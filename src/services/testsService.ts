@@ -1,8 +1,10 @@
 import * as testsRepository from "../repositories/testsRepository.js";
+import * as categoriesRepository from "../repositories/categoriesRepository.js";
+import * as tecahersDisciplinesRepository from "../repositories/teachersDisciplinesRepository.js";
 import { CreateTestData } from "../repositories/testsRepository.js";
 
 export async function insertTest(test: CreateTestData) {
-  const categoryId = await testsRepository.findCategoryById(test.categoryId);
+  const categoryId = await categoriesRepository.findCategoryById(test.categoryId);
   if(!categoryId){
     throw {
       type: "Not_Found",
@@ -10,7 +12,7 @@ export async function insertTest(test: CreateTestData) {
     };
   }
 
-  const teacherDisciplineId = await testsRepository.findTeacherDisciplineById(test.teacherDisciplineId);
+  const teacherDisciplineId = await tecahersDisciplinesRepository.findTeacherDisciplineById(test.teacherDisciplineId);
   if(!teacherDisciplineId){
     throw {
       type: "Not_Found",
@@ -20,4 +22,9 @@ export async function insertTest(test: CreateTestData) {
 
   await testsRepository.insertTest(test);
   return;
+}
+
+export async function getAllTestsByDisciplines() {
+  const tests = await testsRepository.getAllTestsByDisciplines();
+  return tests;
 }

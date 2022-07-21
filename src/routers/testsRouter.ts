@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { insertTest } from "../controllers/testsController.js";
+import { insertTest, getAllTestsByDisciplines } from "../controllers/testsController.js";
 import { schemaMiddleware } from "../middlewares/schemaMiddleware.js";
 import { testsSchema } from "../schemas/testsSchema.js";
+import { ensureAuthenticatedMiddleware } from "../middlewares/authMiddleware.js";
 
-const authRouter = Router();
+const testRouter = Router();
 
-authRouter.post("/createtest", schemaMiddleware(testsSchema), insertTest);
+testRouter.post("/createtest", ensureAuthenticatedMiddleware, schemaMiddleware(testsSchema), insertTest);
+testRouter.get("/testsbydisciplines", ensureAuthenticatedMiddleware, getAllTestsByDisciplines);
 
-export default authRouter;
+export default testRouter;
