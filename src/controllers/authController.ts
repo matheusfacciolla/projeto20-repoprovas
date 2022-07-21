@@ -13,10 +13,5 @@ export async function signIn(req: Request, res: Response) {
   const user: CreateUserData = req.body;
 
   const token = await authService.signIn(user);
-  return res.status(200).send(token);
+  return res.status(200).send({ token });
 }
-
-// export async function logOut(req: Request, res: Response) {
-//   res.cookie('token', '', { httpOnly: true });
-//   return res.sendStatus(200);
-// }
