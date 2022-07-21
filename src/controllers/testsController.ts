@@ -13,3 +13,8 @@ export async function getAllTestsByDisciplines(req: Request, res: Response) {
   const tests = await testsService.getAllTestsByDisciplines();
   return res.status(200).send(tests);
 }
+
+export async function getAllTestsByTeachers(req: Request, res: Response) {
+  const tests = await testsService.getAllTestsByTeachers();
+  return res.status(200).send(tests);
+}

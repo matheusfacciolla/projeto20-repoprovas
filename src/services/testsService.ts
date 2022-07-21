@@ -5,7 +5,7 @@ import { CreateTestData } from "../repositories/testsRepository.js";
 
 export async function insertTest(test: CreateTestData) {
   const categoryId = await categoriesRepository.findCategoryById(test.categoryId);
-  if(!categoryId){
+  if (!categoryId) {
     throw {
       type: "Not_Found",
       message: "Category not found",
@@ -13,7 +13,7 @@ export async function insertTest(test: CreateTestData) {
   }
 
   const teacherDisciplineId = await tecahersDisciplinesRepository.findTeacherDisciplineById(test.teacherDisciplineId);
-  if(!teacherDisciplineId){
+  if (!teacherDisciplineId) {
     throw {
       type: "Not_Found",
       message: "Teacher discipline not found",
@@ -26,5 +26,10 @@ export async function insertTest(test: CreateTestData) {
 
 export async function getAllTestsByDisciplines() {
   const tests = await testsRepository.getAllTestsByDisciplines();
+  return tests;
+}
+
+export async function getAllTestsByTeachers() {
+  const tests = await testsRepository.getAllTestsByTeachers();
   return tests;
 }
