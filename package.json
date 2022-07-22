@@ -6,16 +6,21 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest -i"
+    "test": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@prisma/client": "^4.0.0",
     "bcrypt": "^5.0.1",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "cryptr": "^6.0.3",
     "dayjs": "^1.11.3",
     "dotenv": "^16.0.1",
