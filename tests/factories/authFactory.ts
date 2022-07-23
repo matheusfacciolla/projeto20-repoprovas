@@ -3,27 +3,30 @@ import { faker } from "@faker-js/faker";
 
 import { prisma } from "../../src/config/database.js";
 
-export function createLogin(email = "teste@gmail.com", passwordLength = 10) {
+export function createSignUp(email = "teste@gmail.com", passwordLength = 10) {
+  const password = faker.internet.password(passwordLength);
   return {
     email,
-    password: faker.internet.password(passwordLength),
-    // confirmPassword
+    password,
+    confirmPassword: password
   };
 }
 
 interface Login {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 
-export async function userAndToken(login: Login){
+export async function createUser(login: Login){
+  const password = bcrypt.hashSync(login.password, 10);
   const user = await prisma.users.create({
     data: {
       email: login.email,
-      password: bcrypt.hashSync(login.password, 10)
+      password,
     }
   });
-  
+
   return user;
 }

@@ -4,7 +4,7 @@ import { CreateUserData, CreateUserDataAndConfirmPassword } from "../repositorie
 const signUpSchema = joi.object<CreateUserDataAndConfirmPassword>({
   email: joi.string().email().required(),
   password: joi.string().required().min(10),
-  confirmPassword: joi.ref('password')
+  confirmPassword: joi.valid(joi.ref("password")).required()
 });
 
 const signInSchema = joi.object<CreateUserData>({
