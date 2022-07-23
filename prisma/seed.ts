@@ -39,11 +39,11 @@ async function main() {
     { teacherId: 2, disciplineId: 6 },
   ];
 
-  await prisma.terms.createMany({ data: {...terms} });
-  await prisma.categories.createMany({ data: {...categories} });
-  await prisma.teachers.createMany({ data: {...teachers} });
-  await prisma.disciplines.createMany({ data: {...disciplines} });
-  await prisma.teachersDisciplines.createMany({ data: {...teachersDisciplines} });
+  await prisma.terms.createMany({ data: terms });
+  await prisma.categories.createMany({ data: categories });
+  await prisma.teachers.createMany({ data: teachers });
+  await prisma.disciplines.createMany({ data: disciplines });
+  await prisma.teachersDisciplines.createMany({ data: teachersDisciplines });
 }
 
 main()

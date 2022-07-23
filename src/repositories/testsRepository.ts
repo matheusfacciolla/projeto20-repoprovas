@@ -15,7 +15,7 @@ export async function getAllTestsByDisciplines() {
       disciplines: {
         select: {
           name: true,
-          teacherDisciplines: {
+          teachersDisciplines: {
             select: {
               teachers: {
                 select: {
@@ -48,7 +48,7 @@ export async function getAllTestsByTeachers() {
   const tests = await prisma.teachers.findMany({
     select: {
       name: true,
-      teacherDisciplines: {
+      teachersDisciplines: {
         select: {
           disciplines: {
             select: {

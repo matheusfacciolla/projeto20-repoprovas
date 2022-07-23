@@ -12,7 +12,7 @@ export async function insertTest(test: CreateTestData) {
     };
   }
 
-  const teacherDisciplineId = await tecahersDisciplinesRepository.findTeacherDisciplineById(test.teacherDisciplineId);
+  const teacherDisciplineId = await tecahersDisciplinesRepository.findTeacherDisciplineById(test.teachersDisciplinesId);
   if (!teacherDisciplineId) {
     throw {
       type: "Not_Found",

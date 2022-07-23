@@ -3,9 +3,9 @@ import { faker } from "@faker-js/faker";
 export function validInput() {
   const validInput = {
     name: faker.random.words(1),
-    pdfUrl: "https://javascript.pdf",
-    categoryId: 1,
-    teacherDisciplineId: 1,
+    pdfUrl: faker.internet.url(),
+    categoryId: 1 || 2 || 3,
+    teachersDisciplinesId: 1 || 2 || 3 || 4 || 5 || 6,
   };
   return validInput;
 }
